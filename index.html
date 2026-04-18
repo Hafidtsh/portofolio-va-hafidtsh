@@ -3,291 +3,234 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VA Portfolio Premium</title>
+    <title>Jastip Sembako - GoMart Mini</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
+        font-family: Poppins;
       }
       body {
-        background: #0f172a;
-        color: #fff;
-        overflow-x: hidden;
+        background: #f8fafc;
+        color: #111;
       }
+
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        background: #1e293b;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        padding: 15px 20px;
+        background: #16a34a;
+        color: #fff;
       }
       header h1 {
-        color: #38bdf8;
-      }
-      nav a {
-        margin-left: 20px;
-        color: #fff;
-        text-decoration: none;
-      }
-
-      .menu-toggle {
-        display: none;
-        font-size: 26px;
-        cursor: pointer;
-      }
-
-      /* MOBILE */
-      @media (max-width: 768px) {
-        nav {
-          position: absolute;
-          top: 70px;
-          right: 0;
-          background: #1e293b;
-          width: 200px;
-          flex-direction: column;
-          display: none;
-          padding: 20px;
-          border-radius: 10px;
-        }
-
-        nav a {
-          margin: 10px 0;
-        }
-
-        nav.active {
-          display: flex;
-        }
-
-        .menu-toggle {
-          display: block;
-        }
+        font-size: 20px;
       }
 
       .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 30px 20px;
         text-align: center;
-        padding: 80px 20px;
-        animation: fadeIn 1.2s ease;
-      }
-      .hero img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin-bottom: 20px;
-        border: 3px solid #38bdf8;
+        background: #dcfce7;
       }
       .hero h2 {
-        font-size: 2.5rem;
+        font-size: 24px;
+        margin-bottom: 10px;
       }
-      .btn {
-        background: #38bdf8;
-        padding: 12px 25px;
-        border: none;
-        color: #000;
-        cursor: pointer;
-        margin-top: 20px;
-        border-radius: 8px;
-        transition: 0.3s;
-      }
-      .btn:hover {
-        transform: scale(1.05);
-        background: #0ea5e9;
+      .hero p {
+        opacity: 0.8;
       }
 
-      .services,
-      .pricing {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 40px;
-      }
-      .card {
-        background: #1e293b;
+      .section-title {
         padding: 20px;
-        border-radius: 12px;
-        transition: 0.3s;
-      }
-      .card:hover {
-        transform: translateY(-5px);
+        font-weight: 600;
+        font-size: 18px;
       }
 
-      .price {
-        font-size: 1.5rem;
-        margin: 10px 0;
-        color: #38bdf8;
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 0 20px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+
+      .card button {
+        margin-top: 10px;
+        padding: 8px;
+        border: none;
+        background: #16a34a;
+        color: #fff;
+        border-radius: 8px;
+        cursor: pointer;
       }
 
       .cart {
         position: fixed;
-        right: 20px;
-        top: 100px;
-        background: #1e293b;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
         padding: 15px;
-        border-radius: 10px;
-        width: 250px;
-        max-height: 300px;
-        overflow: auto;
+        border-top: 1px solid #ddd;
       }
 
-      footer {
-        text-align: center;
-        padding: 20px;
-        background: #1e293b;
-        margin-top: 40px;
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f1f5f9;
+        padding: 8px 10px;
+        border-radius: 8px;
+        margin-bottom: 8px;
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .cart-item button {
+        background: #ef4444;
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .cart-item button:hover {
+        background: #dc2626;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
       }
     </style>
   </head>
+
   <body>
     <header>
-      <h1>Hafidtsh</h1>
-
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-      <nav id="navMenu">
-        <a href="#">Home</a>
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <h1>🛒 Jastip Sembako</h1>
+      <span>Padalarang</span>
     </header>
 
     <section class="hero">
-      <img src="https://i.pravatar.cc/150?img=3" alt="profile" />
-      <h2>Virtual Assistant 🚀</h2>
-      <p>Siap bantu bisnis lo naik level</p>
-      <button class="btn" onclick="scrollToSection('services')">Lihat Layanan</button>
+      <h2>Belanja Tanpa Ribet</h2>
+      <p>Kami belanja ke pasar, kamu tinggal terima beres</p>
     </section>
 
-    <section id="services" class="services">
-      <div class="card">
-        <h3>Data Entry</h3>
-        <p>Input data cepat</p>
-        <button onclick="addToCart('Data Entry')">Tambah</button>
-      </div>
-      <div class="card">
-        <h3>Email Management</h3>
-        <p>Kelola email profesional</p>
-        <button onclick="addToCart('Email Management')">Tambah</button>
-      </div>
-      <div class="card">
-        <h3>Social Media</h3>
-        <p>Konten & engagement</p>
-        <button onclick="addToCart('Social Media')">Tambah</button>
-      </div>
-    </section>
+    <h3 class="section-title">🔥 Produk Populer</h3>
 
-    <section id="pricing" class="pricing">
+    <div class="grid">
       <div class="card">
-        <h3>Basic</h3>
-        <div class="price">Rp500K</div>
-        <p>5 task / minggu</p>
-        <button onclick="addToCart('Basic Package')">Pilih</button>
+        <h4>Beras 5kg</h4>
+        <p>Rp75.000</p>
+        <button onclick="addToCart('Beras 5kg')">Tambah</button>
       </div>
-      <div class="card">
-        <h3>Pro</h3>
-        <div class="price">Rp1JT</div>
-        <p>10 task / minggu</p>
-        <button onclick="addToCart('Pro Package')">Pilih</button>
-      </div>
-      <div class="card">
-        <h3>Premium</h3>
-        <div class="price">Rp2JT</div>
-        <p>Unlimited task</p>
-        <button onclick="addToCart('Premium Package')">Pilih</button>
-      </div>
-    </section>
 
-    <div class="cart">
-      <h3>Cart</h3>
-      <ul id="cartItems"></ul>
-      <button class="btn" onclick="orderWA()">Order via WA</button>
+      <div class="card">
+        <h4>Telur 1 Tray</h4>
+        <p>Rp30.000</p>
+        <button onclick="addToCart('Telur 1 Tray')">Tambah</button>
+      </div>
+
+      <div class="card">
+        <h4>Minyak 1L</h4>
+        <p>Rp18.000</p>
+        <button onclick="addToCart('Minyak 1L')">Tambah</button>
+      </div>
+
+      <div class="card">
+        <h4>Sayur Paket</h4>
+        <p>Rp20.000</p>
+        <button onclick="addToCart('Sayur Paket')">Tambah</button>
+      </div>
     </div>
 
-    <section id="contact" class="hero">
-      <h2>Let's Work Together 🚀</h2>
-      <p style="margin-top: 10px; opacity: 0.8">Siap bantu bisnis lo berkembang lebih cepat</p>
+    <h3 class="section-title">➕ Titip Barang Custom</h3>
 
-      <div style="margin-top: 25px; line-height: 1.8">
-        <p>📍 Alamat: Padalarang, Bandung Barat</p>
-        <p>📧 Email: hapid.triansyah01@gmail.com</p>
-        <p>📱 WhatsApp: 0895394023138</p>
-      </div>
+    <div style="padding: 0 20px">
+      <input id="customItem" placeholder="Contoh: cabai 1kg, bawang 2kg" />
+      <button class="btn" onclick="addCustomItem()">Tambah ke Keranjang</button>
+    </div>
 
-      <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap">
-        <button class="btn" onclick="contactWA()">WhatsApp 💬</button>
-        <button class="btn" onclick="contactEmail()">Email 📨</button>
-      </div>
-
-      <div style="margin-top: 30px">
-        <p style="margin-bottom: 10px">Follow Me 🔥</p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap">
-          <a href="#" target="_blank" class="btn">YouTube ▶️</a>
-          <a href="#" target="_blank" class="btn">Instagram 📸</a>
-          <a href="#" target="_blank" class="btn">Facebook 👍</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>© 2026 Hafidtsh VA Portfolio</p>
-    </footer>
+    <div class="cart">
+      <div id="cartItems"></div>
+      <button class="btn" onclick="orderWA()">Checkout via WhatsApp</button>
+    </div>
 
     <script>
-      function toggleMenu() {
-        const nav = document.getElementById("navMenu");
-        nav.classList.toggle("active");
-      }
-      let cart = [];
+      // ✅ ambil data dari localStorage
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       function addToCart(item) {
         cart.push(item);
+
+        // ✅ simpan ke localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        renderCart();
+      }
+      function removeItem(index) {
+        cart.splice(index, 1);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
         renderCart();
       }
 
+      function addCustomItem() {
+        let val = document.getElementById("customItem").value;
+        if (val) {
+          cart.push(val);
+
+          // ✅ simpan ke localStorage
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          renderCart();
+          document.getElementById("customItem").value = "";
+        }
+      }
+
       function renderCart() {
-        const list = document.getElementById("cartItems");
-        list.innerHTML = "";
-        cart.forEach((i) => {
-          let li = document.createElement("li");
-          li.textContent = i;
-          list.appendChild(li);
-        });
+        document.getElementById("cartItems").innerHTML = cart
+          .map(
+            (item, index) => `
+      <div class="cart-item">
+        <span>${item}</span>
+        <button onclick="removeItem(${index})">❌</button>
+      </div>
+    `,
+          )
+          .join("");
       }
 
       function orderWA() {
-        let text = "Halo saya mau order:%0A" + cart.join("%0A");
-        window.open("https://wa.me/62895394023138?text=" + text, "_blank");
+        let text = "Halo saya mau belanja:%0A" + cart.join("%0A");
+        window.open("https://wa.me/62895394023138?text=" + text);
       }
 
-      function contactWA() {
-        window.open("https://wa.me/62895394023138", "_blank");
-      }
-      function contactEmail() {
-        window.location.href = "mailto:hapid.triansyah01@gmail.com";
-      }
-
-      function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-      }
+      // ✅ render saat pertama load
+      renderCart();
     </script>
   </body>
 </html>
