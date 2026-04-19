@@ -62,11 +62,18 @@ function renderCart() {
 
 // checkout WA (FIX)
 function orderWA() {
-  let text = "Halo saya mau belanja:%0A";
+  let text = "🛒 *Pesanan Saya* %0A%0A";
+  let total = 0;
 
-  cart.forEach((item) => {
-    text += `- ${item.name} (Rp${(item.price || 0).toLocaleString()})%0A`;
+  cart.forEach((item, i) => {
+    let price = item.price || 0;
+    total += price;
+
+    text += `${i + 1}. ${item.name}%0A   Rp${price.toLocaleString()}%0A`;
   });
+
+  text += `%0A--------------------%0A`;
+  text += `💰 *Total: Rp${total.toLocaleString()}*`;
 
   window.open("https://wa.me/62895394023138?text=" + text);
 }
