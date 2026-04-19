@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sembako - GoMart Mini</title>
+    <link rel="icon" href="images/logo.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>🛒 Jastip Sembako</h1>
+      <span>Padalarang</span>
+    </header>
+
+    <section class="hero">
+      <h2>Belanja Tanpa Ribet</h2>
+      <p>Kami belanja ke pasar, kamu tinggal terima beres</p>
+    </section>
+
+    <h3 class="section-title">🔥 Produk Populer</h3>
+
+    <div class="grid">
+      <div class="card">
+        <img src="images/beras.jpg" alt="Beras 5kg" />
+        <h4>Beras 5kg</h4>
+        <p>Rp75.000</p>
+        <button onclick="addToCart('Beras 5kg', 75000, 'Beras premium kualitas bagus', 'images/beras.jpg')">Tambah</button>
+      </div>
+
+      <div class="card">
+        <img src="images/telur.jpg" alt="Telur" />
+        <h4>Telur 1 Kg</h4>
+        <p>Rp30.000</p>
+        <button onclick="addToCart('Telur 1 Kg', 30000, 'Telur bersih sehat', 'images/telur.jpg')">Tambah</button>
+      </div>
+
+      <div class="card">
+        <img src="images/minyak.jpg" alt="Minyak1L" />
+        <h4>Minyak 1L</h4>
+        <p>Rp18.000</p>
+        <button onclick="addToCart('Minyak 1L', 18000, 'Minyak premium kualitas bagus', 'images/minyak.jpg')">Tambah</button>
+      </div>
+
+      <div class="card">
+        <img src="images/paketsayur.png" alt="paketsayur" />
+        <h4>Sayur Paket</h4>
+        <p>Rp20.000</p>
+        <button onclick="addToCart('Sayur Paket', 20000, 'Kol, Wortel, Bayam kualitas bagus', 'images/paketsayur.png')">Tambah</button>
+      </div>
+    </div>
+
+    <h3 class="section-title">➕ Titip Barang Custom</h3>
+
+    <div style="padding: 0 20px">
+      <input id="customItem" placeholder="Contoh: cabai 1kg, bawang 2kg" />
+      <button class="btn" onclick="addCustomItem()">Tambah ke Keranjang</button>
+    </div>
+    <div class="warning-cod">
+      ⚠️ <strong>Pembayaran hanya COD</strong> (Bayar di Tempat)<br />
+      💬 Order diproses setelah konfirmasi via WhatsApp
+    </div>
+
+    <div class="cart">
+      <div id="cartItems"></div>
+      <button class="btn" onclick="orderWA()">Checkout via WhatsApp</button>
+      <div id="cartItems"></div>
+      <h3 id="totalHarga">Total: Rp0</h3>
+    </div>
+  </body>
+</html>
