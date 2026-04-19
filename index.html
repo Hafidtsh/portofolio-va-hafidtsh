@@ -3,128 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jastip Sembako - GoMart Mini</title>
-
+    <title>Sembako - GoMart Mini</title>
+    <link rel="icon" href="images/logo.png" type="image/png" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Poppins;
-      }
-      body {
-        background: #f8fafc;
-        color: #111;
-      }
-
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background: #16a34a;
-        color: #fff;
-      }
-      header h1 {
-        font-size: 20px;
-      }
-
-      .hero {
-        padding: 30px 20px;
-        text-align: center;
-        background: #dcfce7;
-      }
-      .hero h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
-      .hero p {
-        opacity: 0.8;
-      }
-
-      .section-title {
-        padding: 20px;
-        font-weight: 600;
-        font-size: 18px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-        padding: 0 20px;
-      }
-
-      .card {
-        background: #fff;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        text-align: center;
-      }
-
-      .card button {
-        margin-top: 10px;
-        padding: 8px;
-        border: none;
-        background: #16a34a;
-        color: #fff;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      .cart {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        padding: 15px;
-        border-top: 1px solid #ddd;
-      }
-
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #f1f5f9;
-        padding: 8px 10px;
-        border-radius: 8px;
-        margin-bottom: 8px;
-      }
-
-      .cart-item button {
-        background: #ef4444;
-        border: none;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-
-      .cart-item button:hover {
-        background: #dc2626;
-      }
-
-      .btn {
-        width: 100%;
-        padding: 12px;
-        background: #16a34a;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-      }
-
-      input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
   </head>
 
   <body>
@@ -142,27 +25,31 @@
 
     <div class="grid">
       <div class="card">
+        <img src="images/beras.jpg" alt="Beras 5kg" />
         <h4>Beras 5kg</h4>
         <p>Rp75.000</p>
-        <button onclick="addToCart('Beras 5kg')">Tambah</button>
+        <button onclick="addToCart('Beras 5kg', 'Beras premium kualitas bagus', 'images/beras.jpg')">Tambah</button>
       </div>
 
       <div class="card">
-        <h4>Telur 1 Tray</h4>
+        <img src="images/telur.jpg" alt="Telur" />
+        <h4>Telur 1 Kg</h4>
         <p>Rp30.000</p>
-        <button onclick="addToCart('Telur 1 Tray')">Tambah</button>
+        <button onclick="addToCart('Telur 1 Kg', 'Telur bersih sehat', 'images/telur.jpg')">Tambah</button>
       </div>
 
       <div class="card">
+        <img src="images/minyak.jpg" alt="Minyak1L" />
         <h4>Minyak 1L</h4>
         <p>Rp18.000</p>
-        <button onclick="addToCart('Minyak 1L')">Tambah</button>
+        <button onclick="addToCart('Minyak 1L', 'Minyak premium kualitas bagus', 'images/minyak.jpg')">Tambah</button>
       </div>
 
       <div class="card">
+        <img src="images/paketsayur.png" alt="paketsayur" />
         <h4>Sayur Paket</h4>
         <p>Rp20.000</p>
-        <button onclick="addToCart('Sayur Paket')">Tambah</button>
+        <button onclick="addToCart('Sayur Paket', 'Kol, Wortel, Bayam kualitas bagus', 'images/paketsayur.png')">Tambah</button>
       </div>
     </div>
 
@@ -172,65 +59,14 @@
       <input id="customItem" placeholder="Contoh: cabai 1kg, bawang 2kg" />
       <button class="btn" onclick="addCustomItem()">Tambah ke Keranjang</button>
     </div>
+    <div class="warning-cod">
+      ⚠️ <strong>Pembayaran hanya COD</strong> (Bayar di Tempat)<br />
+      💬 Order diproses setelah konfirmasi via WhatsApp
+    </div>
 
     <div class="cart">
       <div id="cartItems"></div>
       <button class="btn" onclick="orderWA()">Checkout via WhatsApp</button>
     </div>
-
-    <script>
-      // ✅ ambil data dari localStorage
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-      function addToCart(item) {
-        cart.push(item);
-
-        // ✅ simpan ke localStorage
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        renderCart();
-      }
-      function removeItem(index) {
-        cart.splice(index, 1);
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        renderCart();
-      }
-
-      function addCustomItem() {
-        let val = document.getElementById("customItem").value;
-        if (val) {
-          cart.push(val);
-
-          // ✅ simpan ke localStorage
-          localStorage.setItem("cart", JSON.stringify(cart));
-
-          renderCart();
-          document.getElementById("customItem").value = "";
-        }
-      }
-
-      function renderCart() {
-        document.getElementById("cartItems").innerHTML = cart
-          .map(
-            (item, index) => `
-      <div class="cart-item">
-        <span>${item}</span>
-        <button onclick="removeItem(${index})">❌</button>
-      </div>
-    `,
-          )
-          .join("");
-      }
-
-      function orderWA() {
-        let text = "Halo saya mau belanja:%0A" + cart.join("%0A");
-        window.open("https://wa.me/62895394023138?text=" + text);
-      }
-
-      // ✅ render saat pertama load
-      renderCart();
-    </script>
   </body>
 </html>
