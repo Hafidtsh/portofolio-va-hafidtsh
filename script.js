@@ -37,30 +37,45 @@ function removeItem(index) {
 
 // tambah custom item
 function addCustomItem() {
-  let val = document.getElementById("customItem").value;
+  let name = document.getElementById("customItem").value;
+  let price = parseInt(document.getElementById("customPrice").value);
+  let note = document.getElementById("customNote").value;
 
-  if (val) {
-    cart.push({
-      name: val,
-      price: 0,
-      desc: "Pesanan custom",
-      img: "images/logo.png",
-    });
+  if (name && price) {
+    let existing = cart.find((item) => item.name === name);
+
+    if (existing) {
+      existing.qty += 1;
+      if (note) existing.note = note; // update catatan
+    } else {
+      cart.push({
+        name,
+        price,
+        desc: "Pesanan custom",
+        img: "images/logo.png",
+        qty: 1,
+        note: note,
+      });
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-
     renderCart();
+
+    // reset
     document.getElementById("customItem").value = "";
+    document.getElementById("customPrice").value = "";
+    document.getElementById("customNote").value = "";
+  } else {
+    alert("Isi nama dan harga dulu bro!");
   }
 }
-
 // render cart + total
 function renderCart() {
   let total = 0;
 
   document.getElementById("cartItems").innerHTML = cart
     .map((item, index) => {
-      let subtotal = (item.price || 0) * item.qty;
+      let subtotal = item.price * item.qty;
       total += subtotal;
 
       return `
@@ -70,13 +85,16 @@ function renderCart() {
         <div class="info">
           <strong>${item.name}</strong>
           <p>${item.desc || ""}</p>
-          <small>Rp${item.price.toLocaleString()}</small>
+          
+          ${item.note ? `<small>📝 ${item.note}</small>` : ""}
 
           <div class="qty">
             <button onclick="changeQty(${index}, -1)">-</button>
             <span>${item.qty}</span>
             <button onclick="changeQty(${index}, 1)">+</button>
           </div>
+
+          <small>Rp${subtotal.toLocaleString()}</small>
         </div>
 
         <button onclick="removeItem(${index})">❌</button>
@@ -85,9 +103,7 @@ function renderCart() {
     })
     .join("");
 
-  // ongkir
   let ongkir = cart.length > 0 ? 5000 : 0;
-
   let totalFinal = total + ongkir;
 
   document.getElementById("totalHarga").innerText = "Total: Rp" + totalFinal.toLocaleString();
@@ -105,7 +121,11 @@ function orderWA() {
     let subtotal = item.price * item.qty;
     total += subtotal;
 
-    text += `${i + 1}. ${item.name} x${item.qty}%0A   Rp${subtotal.toLocaleString()}%0A`;
+    text += `${i + 1}. ${item.name} x${item.qty}%0A`;
+    if (item.note) {
+      text += `   📝 ${item.note}%0A`;
+    }
+    text += `   Rp${subtotal.toLocaleString()}%0A`;
   });
 
   let ongkir = cart.length > 0 ? 5000 : 0;
